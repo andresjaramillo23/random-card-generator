@@ -20,9 +20,7 @@ function getRandomNumber() {
   return String(Math.floor(Math.random() * 13));
 }
 
-const btn = document.getElementById("b1");
-
-btn.onclick = function() {
+function setCardType() {
   switch (getRandomCard()) {
     case 1:
       document.getElementById("cardIcon").innerHTML = "♦";
@@ -37,6 +35,25 @@ btn.onclick = function() {
       document.getElementById("cardIcon").innerHTML = "♣";
       break;
   }
+}
+
+const btn = document.getElementById("b1");
+
+btn.onclick = function() {
+  setCardType();
 
   document.getElementById("cardNumber").innerHTML = getRandomNumber();
 };
+
+var timeleft = 10;
+var downloadTimer = setInterval(function() {
+  if (timeleft <= 0) {
+    clearInterval(downloadTimer);
+    document.getElementById("countdown").innerHTML = "Finished";
+    setCardType();
+    document.getElementById("cardNumber").innerHTML = getRandomNumber();
+  }
+  document.getElementById("countdown").innerHTML =
+    timeleft + " seconds remaining";
+  timeleft -= 1;
+}, 1000);
