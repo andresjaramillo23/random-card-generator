@@ -5,55 +5,112 @@ import "./style.css";
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
+let timerButtonLabel = document.getElementById("label");
+let timerLabel = document.getElementById("countdown");
+let timerButton = document.getElementById("b2");
+let randomCardButton = document.getElementById("b1");
+let cardNumberLabel = document.getElementById("cardNumber");
+let cardSymbolLabel = document.getElementById("cardIcon");
+let cardNumbers = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "J",
+  "Q",
+  "K"
+];
+let cardSymbols = ["♦", "♥", "♠", "♣"];
+let timeCounter = 10;
+let timeleft = timeCounter;
+
 window.onload = function() {
-  //write your code here
   console.log("Hello Rigo from the console!");
-  document.getElementById("cardIcon").innerHTML = "♣";
-  document.getElementById("cardNumber").innerHTML = "1";
+  cardSymbolLabel.innerHTML = getRandom(cardSymbols);
+  cardNumberLabel.innerHTML = getRandom(cardNumbers);
+  timerButtonLabel.innerHTML = "Start Timer";
 };
 
-function getRandomCard() {
-  return Math.floor(Math.random() * 4 + 1);
+timerButton.addEventListener("change", runTimer);
+randomCardButton.addEventListener("click", createRandomCard);
+
+function runTimer() {
+  if (!this.checked) {
+    initializeTime();
+    let timer = new Timer(function() {
+      if (timeleft == 0) setNewCardAndResetTimer();
+      else if (timeleft > 0) decreaseTime();
+      else timer.stop();
+    }, 1000);
+  } else ResetTimer();
 }
 
-function getRandomNumber() {
-  return String(Math.floor(Math.random() * 13));
+function getRandomInt(arraySize) {
+  return Math.floor(Math.random() * arraySize);
 }
 
-function setCardType() {
-  switch (getRandomCard()) {
-    case 1:
-      document.getElementById("cardIcon").innerHTML = "♦";
-      break;
-    case 2:
-      document.getElementById("cardIcon").innerHTML = "♥";
-      break;
-    case 3:
-      document.getElementById("cardIcon").innerHTML = "♠";
-      break;
-    case 4:
-      document.getElementById("cardIcon").innerHTML = "♣";
-      break;
-  }
+function getRandom(array) {
+  return array[getRandomInt(array.length)];
 }
 
-const btn = document.getElementById("b1");
+function createRandomCard() {
+  cardSymbolLabel.innerHTML = getRandom(cardSymbols);
+  cardNumberLabel.innerHTML = getRandom(cardNumbers);
+}
 
-btn.onclick = function() {
-  setCardType();
+function setCountdownTimer(timeleft) {
+  timerLabel.innerHTML = timeleft + " seconds remaining";
+}
 
-  document.getElementById("cardNumber").innerHTML = getRandomNumber();
-};
+function ResetTimer() {
+  timeleft = -1;
+  timerButtonLabel.innerHTML = "Start Timer";
+  timerLabel.innerHTML = "Timer stopped";
+}
 
-var timeleft = 10;
-var downloadTimer = setInterval(function() {
-  if (timeleft <= 0) {
-    clearInterval(downloadTimer);
-    document.getElementById("countdown").innerHTML = "Finished";
-    setCardType();
-    document.getElementById("cardNumber").innerHTML = getRandomNumber();
-  }
-  document.getElementById("countdown").innerHTML =
-    timeleft + " seconds remaining";
+function initializeTime() {
+  //timeleft = timeCounter;
+  timerButtonLabel.innerHTML = "Stop Timer";
+}
+
+function decreaseTime() {
+  setCountdownTimer(timeleft);
   timeleft -= 1;
-}, 1000);
+}
+
+function setNewCardAndResetTimer() {
+  setCountdownTimer(timeleft);
+  createRandomCard();
+  timeleft = timeCounter;
+}
+
+function Timer(fn, t) {
+  var timerObj = setInterval(fn, t);
+
+  this.stop = function() {
+    if (timerObj) {
+      clearInterval(timerObj);
+      timerObj = null;
+    }
+    return this;
+  };
+
+  this.start = function() {
+    if (!timerObj) {
+      this.stop();
+      timerObj = setInterval(fn, t);
+    }
+    return this;
+  };
+
+  this.reset = function(newT = t) {
+    t = newT;
+    return this.stop().start();
+  };
+}

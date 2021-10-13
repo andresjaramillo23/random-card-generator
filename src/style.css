@@ -1,5 +1,9 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+body {
+  background-color: green;
+}
+
 .card {
   text-align: center;
 }
