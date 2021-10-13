@@ -20,24 +20,31 @@
 
   <body>
     <div class="row">
-      <div class="col-2 mx-auto">
+      <div id="card" class="col-2 mx-auto">
         <div class="card" style="width: 18rem; ">
-          <div class="card heart d-flex align-content-around flex-wrap">
-            <h1 id="cardIcon"><b></b></h1>
+          <div class="card d-flex align-content-around flex-wrap">
+            <div id="topIcon">
+              <h1 id="cardNumberTop"></h1>
+              <h1 id="cardIconTop"></h1>
+            </div>
             <img
-              src="./joker.jpg"
               class="card-img-top"
+              id="imageId"
+              src="./"
               alt="..."
               style="margin-top: 50px; margin-bottom: 50px;"
             />
-            <h1 id="cardNumber"></h1>
+            <div id="bottomIcon">
+              <h1 id="cardNumberBottom"></h1>
+              <h1 id="cardIconBottom"></h1>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-1 mx-auto">
-        <input id="b1" type="button" value="click me!" />
+        <input id="b1" type="button" value="get a new card" />
       </div>
       <div class="col-5">
         <div id="countdown"></div>

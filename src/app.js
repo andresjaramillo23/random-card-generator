@@ -4,15 +4,19 @@ import "./style.css";
 
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
+import "./assets/img/joker.jpg";
 
 let timerButtonLabel = document.getElementById("label");
 let timerLabel = document.getElementById("countdown");
 let timerButton = document.getElementById("b2");
 let randomCardButton = document.getElementById("b1");
-let cardNumberLabel = document.getElementById("cardNumber");
-let cardSymbolLabel = document.getElementById("cardIcon");
+let image = document.getElementById("imageId");
+let cardNumberLabelTop = document.getElementById("cardNumberTop");
+let cardNumberLabelBottom = document.getElementById("cardNumberBottom");
+let cardSymbolLabelTop = document.getElementById("cardIconTop");
+let cardSymbolLabelBottom = document.getElementById("cardIconBottom");
 let cardNumbers = [
-  "1",
+  "A",
   "2",
   "3",
   "4",
@@ -24,7 +28,8 @@ let cardNumbers = [
   "10",
   "J",
   "Q",
-  "K"
+  "K",
+  "joker"
 ];
 let cardSymbols = ["♦", "♥", "♠", "♣"];
 let timeCounter = 10;
@@ -32,8 +37,7 @@ let timeleft = timeCounter;
 
 window.onload = function() {
   console.log("Hello Rigo from the console!");
-  cardSymbolLabel.innerHTML = getRandom(cardSymbols);
-  cardNumberLabel.innerHTML = getRandom(cardNumbers);
+  createRandomCard();
   timerButtonLabel.innerHTML = "Start Timer";
 };
 
@@ -60,8 +64,52 @@ function getRandom(array) {
 }
 
 function createRandomCard() {
-  cardSymbolLabel.innerHTML = getRandom(cardSymbols);
-  cardNumberLabel.innerHTML = getRandom(cardNumbers);
+  let cardNumber = getRandom(cardNumbers);
+  if (cardNumber == "joker") {
+    createImage("50px", "50px", "");
+    resetCard();
+    createImage("300px", "200px", "./joker.jpg");
+    image.style.margin = "73px";
+  } else {
+    createImage("50px", "50px", "./4geeks.ico");
+    image.style.margin = "100px";
+
+    let cardSymbol = getRandom(cardSymbols);
+    if (cardSymbol == "♦" || cardSymbol == "♥") setCardColor("red");
+    else setCardColor("black");
+
+    setCard(cardSymbol, cardNumber);
+  }
+}
+
+function setCard(cardSymbol, cardNumber) {
+  cardSymbolLabelTop.innerHTML = cardSymbol;
+  cardSymbolLabelBottom.innerHTML = cardSymbol;
+  cardNumberLabelTop.innerHTML = cardNumber;
+  cardNumberLabelBottom.innerHTML = cardNumber;
+}
+
+function resetCard() {
+  image.style.height = "0px";
+  image.style.width = "0px";
+  image.src = "./";
+  cardNumberLabelTop.innerHTML = "";
+  cardNumberLabelBottom.innerHTML = "";
+  cardSymbolLabelTop.innerHTML = "";
+  cardSymbolLabelBottom.innerHTML = "";
+}
+
+function createImage(height, width, src) {
+  image.src = src;
+  image.style.height = height;
+  image.style.width = width;
+}
+
+function setCardColor(color) {
+  cardSymbolLabelTop.style.color = color;
+  cardSymbolLabelBottom.style.color = color;
+  cardNumberLabelTop.style.color = color;
+  cardNumberLabelBottom.style.color = color;
 }
 
 function setCountdownTimer(timeleft) {
@@ -75,7 +123,7 @@ function ResetTimer() {
 }
 
 function initializeTime() {
-  //timeleft = timeCounter;
+  timeleft = timeCounter;
   timerButtonLabel.innerHTML = "Stop Timer";
 }
 
