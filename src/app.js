@@ -10,6 +10,7 @@ let timerButtonLabel = document.getElementById("label");
 let timerLabel = document.getElementById("countdown");
 let timerButton = document.getElementById("b2");
 let randomCardButton = document.getElementById("b1");
+let setCardButton = document.getElementById("b3");
 let image = document.getElementById("imageId");
 let cardNumberLabelTop = document.getElementById("cardNumberTop");
 let cardNumberLabelBottom = document.getElementById("cardNumberBottom");
@@ -29,7 +30,7 @@ let cardNumbers = [
   "J",
   "Q",
   "K",
-  "joker"
+  "Joker"
 ];
 let cardSymbols = ["♦", "♥", "♠", "♣"];
 let timeCounter = 10;
@@ -43,6 +44,34 @@ window.onload = function() {
 
 timerButton.addEventListener("change", runTimer);
 randomCardButton.addEventListener("click", createRandomCard);
+setCardButton.addEventListener("click", setCardFromInput);
+
+function setCardFromInput() {
+  let inputNumber = document.getElementsByName("inputNumbers")[0].value;
+  let inputIcon = document.getElementsByName("inputIcons")[0].value;
+
+  if ((inputIcon != "" && inputNumber != "") || inputNumber == "Joker") {
+    let cardNumber = inputNumber;
+    if (cardNumber == "Joker") {
+      createImage("50px", "50px", "");
+      resetCard();
+      createImage("300px", "200px", "./joker.jpg");
+      image.style.margin = "71px";
+    } else {
+      createImage("50px", "50px", "./4geeks.ico");
+      image.style.margin = "100px";
+
+      let cardSymbol = inputIcon;
+      if (cardSymbol == "♦" || cardSymbol == "♥") setCardColor("red");
+      else setCardColor("black");
+
+      setCard(cardSymbol, cardNumber);
+    }
+  }
+
+  document.getElementsByName("inputNumbers")[0].value = "";
+  document.getElementsByName("inputIcons")[0].value = "";
+}
 
 function runTimer() {
   if (!this.checked) {
@@ -57,11 +86,11 @@ function runTimer() {
 
 function createRandomCard() {
   let cardNumber = getRandom(cardNumbers);
-  if (cardNumber == "joker") {
+  if (cardNumber == "Joker") {
     createImage("50px", "50px", "");
     resetCard();
     createImage("300px", "200px", "./joker.jpg");
-    image.style.margin = "73px";
+    image.style.margin = "71px";
   } else {
     createImage("50px", "50px", "./4geeks.ico");
     image.style.margin = "100px";
