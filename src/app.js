@@ -55,14 +55,6 @@ function runTimer() {
   } else ResetTimer();
 }
 
-function getRandomInt(arraySize) {
-  return Math.floor(Math.random() * arraySize);
-}
-
-function getRandom(array) {
-  return array[getRandomInt(array.length)];
-}
-
 function createRandomCard() {
   let cardNumber = getRandom(cardNumbers);
   if (cardNumber == "joker") {
@@ -110,6 +102,14 @@ function setCardColor(color) {
   cardSymbolLabelBottom.style.color = color;
   cardNumberLabelTop.style.color = color;
   cardNumberLabelBottom.style.color = color;
+}
+
+function getRandomInt(arraySize) {
+  return Math.floor(Math.random() * arraySize);
+}
+
+function getRandom(array) {
+  return array[getRandomInt(array.length)];
 }
 
 function setCountdownTimer(timeleft) {
