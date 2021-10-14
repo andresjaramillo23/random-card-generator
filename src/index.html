@@ -19,6 +19,35 @@
   </head>
 
   <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <label class="ext-center text-uppercase fs-6 fw-italic font-monospace"
+            >Choose your own card:
+          </label>
+          <input
+            type="text"
+            placeholder="Select value"
+            list="sentencesList"
+            name="inputIcons"
+            style="width: 150px;"
+          />
+          <datalist id="sentencesList">
+            <option value="♦"></option>
+            <option value="♥"></option>
+            <option value="♠"></option>
+            <option value="♣"></option>
+          </datalist>
+        </div>
+        <div class="col-sm">
+          One of three columns
+        </div>
+        <div class="col-sm">
+          One of three columns
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div id="card" class="col-2 mx-auto">
         <div class="card" style="width: 18rem; ">
@@ -47,21 +76,6 @@
         <input id="b1" type="button" value="get a new card" />
       </div>
       <div class="col-4">
-        <label class="ext-center text-uppercase fs-6 fw-italic font-monospace"
-          >Choose your own card:
-          <input
-            type="text"
-            placeholder="Select value"
-            list="sentencesList"
-            name="inputIcons"
-            style="width: 150px;"
-        /></label>
-        <datalist id="sentencesList">
-          <option value="♦"></option>
-          <option value="♥"></option>
-          <option value="♠"></option>
-          <option value="♣"></option>
-        </datalist>
         <input
           type="text"
           placeholder="Select value"
