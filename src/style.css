@@ -4,12 +4,26 @@ body {
   background-color: green;
 }
 
-/* #card {
+#firstRow {
   margin-top: 200px;
 }
 
-.card {
-  text-align: center;
+#firstCol,
+#thirdCol {
+  margin-top: 200px;
+}
+
+#lolo {
+  margin-top: 500x;
+}
+
+#count {
+  padding: 20px;
+  /*border: 0ch; */
+}
+
+#b1 {
+  margin-top: 50px;
 }
 
 #topIcon {
@@ -21,12 +35,3 @@ body {
   margin-right: 10px;
   text-align: right;
 }
-
-#cardNumberTop,
-#cardNumberBottom,
-#cardIconTop,
-#cardIconBottom {
-  padding: 0%;
-  margin: 0%;
-  border: 0ch;
-} */

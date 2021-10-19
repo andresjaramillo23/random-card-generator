@@ -20,10 +20,10 @@
 
   <body>
     <div class="container">
-      <div class="row">
-        <div class="col-sm">
+      <div id="firstRow" class="row">
+        <div id="firstCol" class="col">
           <label class="ext-center text-uppercase fs-6 fw-italic font-monospace"
-            >Choose your own card:
+            >Choose a card:
           </label>
           <input
             type="text"
@@ -38,83 +38,79 @@
             <option value="♠"></option>
             <option value="♣"></option>
           </datalist>
-        </div>
-        <div class="col-sm">
-          One of three columns
-        </div>
-        <div class="col-sm">
-          One of three columns
-        </div>
-      </div>
-    </div>
 
-    <div class="row">
-      <div id="card" class="col-2 mx-auto">
-        <div class="card" style="width: 18rem; ">
-          <div class="card d-flex align-content-around flex-wrap">
-            <div id="topIcon">
-              <h1 id="cardNumberTop"></h1>
-              <h1 id="cardIconTop"></h1>
-            </div>
-            <img
-              class="card-img-top"
-              id="imageId"
-              src="./"
-              alt="..."
-              style="margin-top: 50px; margin-bottom: 50px;"
-            />
-            <div id="bottomIcon">
-              <h1 id="cardNumberBottom"></h1>
-              <h1 id="cardIconBottom"></h1>
+          <input
+            type="text"
+            placeholder="Select value"
+            list="sentencesList2"
+            name="inputNumbers"
+            style="width: 150px;"
+          />
+          <datalist id="sentencesList2">
+            <option value="A"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
+            <option value="5"></option>
+            <option value="6"></option>
+            <option value="7"></option>
+            <option value="8"></option>
+            <option value="9"></option>
+            <option value="10"></option>
+            <option value="J"></option>
+            <option value="Q"></option>
+            <option value="K"></option>
+            <option value="Joker"></option>
+          </datalist>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem; ">
+            <div class="card d-flex align-content-around flex-wrap">
+              <div id="topIcon">
+                <h1 id="cardNumberTop"></h1>
+                <h1 id="cardIconTop"></h1>
+              </div>
+              <img
+                class="card-img-top"
+                id="imageId"
+                src="./"
+                alt="..."
+                style="margin-top: 50px; margin-bottom: 50px;"
+              />
+              <div id="bottomIcon">
+                <h1 id="cardNumberBottom"></h1>
+                <h1 id="cardIconBottom"></h1>
+              </div>
             </div>
           </div>
         </div>
+        <div id="thirdCol" class="col-3">
+          <div id="count" class="row">
+            <div
+              id="countdown"
+              style="font-size: large; font-style: oblique; font-weight: bold;"
+            ></div>
+          </div>
+          <div id="lolo" class="row">
+            <input
+              type="checkbox"
+              class="btn-check"
+              id="b2"
+              checked
+              autocomplete="off"
+            />
+            <label id="label" class="btn btn-primary" for="b2"></label>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-1">
-        <input id="b1" type="button" value="get a new card" />
-      </div>
-      <div class="col-4">
-        <input
-          type="text"
-          placeholder="Select value"
-          list="sentencesList2"
-          name="inputNumbers"
-          style="width: 150px;"
-        />
-        <datalist id="sentencesList2">
-          <option value="A"></option>
-          <option value="2"></option>
-          <option value="3"></option>
-          <option value="4"></option>
-          <option value="5"></option>
-          <option value="6"></option>
-          <option value="7"></option>
-          <option value="8"></option>
-          <option value="9"></option>
-          <option value="10"></option>
-          <option value="J"></option>
-          <option value="Q"></option>
-          <option value="K"></option>
-          <option value="Joker"></option>
-        </datalist>
-      </div>
-      <div class="col-1">
-        <input id="b3" type="button" value="set a new card!" />
-      </div>
-      <div class="col-3">
-        <div id="countdown"></div>
-      </div>
-      <div class="col-2">
-        <input
-          type="checkbox"
-          class="btn-check"
-          id="b2"
-          checked
-          autocomplete="off"
-        />
-        <label id="label" class="btn btn-primary" for="b2"></label>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-3">
+          <input id="b3" type="button" value="set a new card" />
+        </div>
+        <div class="col-4">
+          <input id="b1" type="button" value="get a new card!" />
+        </div>
       </div>
     </div>
     <script src="app.js"></script>
